@@ -6,19 +6,24 @@ def calculate_cluster_requirements(daily_ingest, retention_days, replicas):
     total_data_volume =+ total_data_volume * .15  # Add 15% buffer for watermarkng
         
 
-def calculate_hot_nodes(hot_retention_days, daily_ingest, replicas):
+def calculate_hot_nodes(hot_retention_days, daily_ingest, replicas, write_speed):
     # calculate data volume in warm phase
     hot_data_volume = hot_retention_days * daily_ingest * (1 + replicas)
     # calculate number of nodes needed based off a 1:100 ram to disk ratio
     ram = hot_data_volume / 64
     ram = ram.round()
     recommended_hot_nodes = ram / 64
+    if write_speed == True and recommended_hot_nodes > 3 and replicas == 1:
+        primary_shards >= 2
+    else:
+        primary_shards = 1
     global eru_hot
     eru_hot = ram / 64
     eru_hot = math.ceil(eru_hot)
     return {
         'recommended_nodes': int(recommended_hot_nodes),
-        'eru_hot': int(eru_hot),
+        'primary_shards': int(primary_shards),
+        'eru_hot': int(eru_hot),        
     }   
 
 def calculate_warm_nodes(warm_retention_days, daily_ingest, replicas):

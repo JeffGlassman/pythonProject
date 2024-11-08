@@ -14,6 +14,11 @@ class ClusterSizingForm(forms.Form):
         label="Number of Replicas",
         help_text="Enter the number of replicas to store for each shard. Typically 1-2."
     )
+    write_speed = forms.BooleanField(
+        label="Write Speed",
+        help_text="Check if you require high write speed. If unsure, leave unchecked."
+    )
+    
     hot_retention_days = forms.IntegerField(
         label="Hot phase retention Period (roughly)",
         help_text="Specify the number of days the data should be retained in the hot phase."
