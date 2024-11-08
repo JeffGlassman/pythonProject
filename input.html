@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elasticsearch Cluster Sizing Tool</title>
+</head>
+<body>
+    <h2>Elasticsearch Cluster Sizing Tool</h2>
+    <p>Please fill out the form below with your data ingestion and retention details.</p>
+
+    <form action="/calculate/" method="post">
+        {% csrf_token %}
+
+        <label for="id_daily_ingest_rate">Daily Ingest Rate (GB): </label>
+        <input type="text" id="id_daily_ingest_rate" name="daily_ingest_rate">
+        <small>Enter the expected daily data ingest volume in gigabytes.</small><br><br>
+
+        <label for="id_retention_days">Retention Period (Days): </label>
+        <input type="text" id="id_retention_days" name="retention_days">
+        <small>Specify the total number of days the data should be retained.</small><br><br>
+
+        <label for="id_replicas">Number of Replicas: </label>
+        <input type="text" id="id_replicas" name="replicas">
+        <small>Enter the number of replicas to store for each shard. Typically 1-2.</small><br><br>
+
+        <label for="id_hot_retention_days">Hot Retention Period (Days): </label>
+        <input type="text" id="id_hot_retention_days" name="hot_retention_days">
+        <small>Specify the number of days the data will be retained in the hot phase.</small><br><br>
+
+        <label for="id_warm_retention_days">Warm Retention Period (Days): </label>
+        <input type="text" id="id_warm_retention_days" name="warm_retention_days">
+        <small>Specify the number of days the data will be retained in the warm phase.</small><br><br>
+
+        <label for="id_cold_retention_days">Cold Retention Period (Days): </label>
+        <input type="text" id="id_cold_retention_days" name="cold_retention_days">
+        <small>Specify the number of days the data will be retained in the cold phase.</small><br><br>
+
+        <label for="id_machine_learning">Machine Learning: </label>
+        <input type="text" id="id_machine_learning" name="machine_learning">
+        <small>Will Elasitic's builin machine learning be used? Enter true or false.</small><br><br>
+
+
+
+
+
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>

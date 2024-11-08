@@ -1,0 +1,13 @@
+#Calculate hot nodes
+=ROUNDUP('Scenario 2: Enterprise'!site1_quantity_nodes_hot/'Scenario 2: Enterprise'!site1_number_sites)
+## simplified 
+daily_ingest * replicas * retention_days / (disk_per_node - overhead_space) / 1000
+
+# hot ratio for ram to disk
+1:32
+#warm ratio for ram to disk
+1:100
+#cold ratio for ram to disk
+1:200
+#frozen ratio for ram to disk
+1:50
