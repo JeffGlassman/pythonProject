@@ -6,6 +6,7 @@ class ClusterSizingForm(forms.Form):
         label="Daily Ingest Rate (GB)",
         help_text="Enter the expected daily data ingest volume in gigabytes."
     )
+    
     retention_days = forms.IntegerField(
         label="Retention Period (Days)",
         help_text="Specify the number of days the data should be retained."
@@ -13,6 +14,10 @@ class ClusterSizingForm(forms.Form):
     replicas = forms.IntegerField(
         label="Number of Replicas",
         help_text="Enter the number of replicas to store for each shard. Typically 1-2."
+    )
+    endpoints = forms.IntegerField(
+        label="Number of Endpoints",
+        help_text="Enter the number of endpoints on the network."
     )
     write_speed = forms.BooleanField(
         label="Write Speed",
