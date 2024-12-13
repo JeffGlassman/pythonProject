@@ -82,6 +82,7 @@ def kibana_nodes(kibana):
     }
 
 def frozen_nodes(daily_ingest, frozen_retention_days, disk_size):
+    #assuming that we are going to one replica shard for the frozen data nodes
     ram = (daily_ingest * frozen_retention_days * .5) / 50
     recommended_nodes = frozen_retention_days * daily_ingest / disk_size
     recommended_nodes = math.ceil(recommended_nodes)
